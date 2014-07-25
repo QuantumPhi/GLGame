@@ -26,7 +26,7 @@ static void render()
     clear();
 
     glBegin(GL_QUADS);
-    glColor4f(52.f/255, 152.f/255, 219.f/255, 0.1f);
+    glColor4f(52.f/255, 152.f/255, 219.f/255, 0.5f);
     glVertex2f(-0.5f, -0.5f);
     glVertex2f(0.5f, -0.5f);
     glVertex2f(0.5f, 0.5f);
@@ -40,11 +40,11 @@ static int init(int* argc, char** argv)
 {
     glutInit(argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
     glutInitWindowSize(400, 300);
     glutInitWindowPosition(400, 300);
     glutCreateWindow("Hello, world!");
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     glutDisplayFunc(&render);
     glutIdleFunc(&update);
 
