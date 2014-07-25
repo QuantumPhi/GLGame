@@ -1,8 +1,17 @@
+#include <GL/gl.h>
+
 class Quad
 {
 public:
-    Quad(int topLeft, int topRight, int bottomRight, int bottomLeft)
+    Quad(Vertex** _vertices)
     {
-        
+        vertices = _vertices
     }
+
+    bindTexture(GLuint texture)
+    {
+
+    }
+protected:
+    Vertex** vertices;
 }

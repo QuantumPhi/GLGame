@@ -7,10 +7,11 @@
 #  include <GL/glut.h>
 #endif
 #include <png.h>
+#include "texture.h"
 
 using namespace std;
 
-GLuint png_texture_load(const char * file_name, int * width, int * height)
+static GLuint png_texture_load(const char * file_name, int * width, int * height)
 {
     png_byte header[8];
 
