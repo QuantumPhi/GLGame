@@ -9,6 +9,13 @@
 
 using namespace std;
 
+static void clear()
+{
+    glClearColor(0.f, 0.f, 0.f, 0.f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glutSwapBuffers();
+}
+
 static void update()
 {
 
@@ -16,15 +23,25 @@ static void update()
 
 static void render()
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    clear();
+
+    glBegin(GL_QUADS);
+    glColor4f(52.f/255, 152.f/255, 219.f/255, 0.1f);
+    glVertex2f(-0.5f, -0.5f);
+    glVertex2f(0.5f, -0.5f);
+    glVertex2f(0.5f, 0.5f);
+    glVertex2f(-0.5f, 0.5f);
+    glEnd();
+
     glutSwapBuffers();
 }
 
 static int init(int* argc, char** argv)
 {
     glutInit(argc, argv);
-    glutInitDisplayMode(GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     glutInitWindowSize(400, 300);
     glutInitWindowPosition(400, 300);
     glutCreateWindow("Hello, world!");
