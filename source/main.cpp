@@ -7,7 +7,7 @@
 #else
 #  include <GL/glut.h>
 #endif
-#include "loader.h"
+#include "loader.cpp"
 
 using namespace std;
 
@@ -29,21 +29,18 @@ static void render()
 {
     clear();
 
-    int width;
-    int height;
-
-    texture = loadTexture("../res/ship.png", &width, &height);
-
+    glEnable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
+    glTexCoord2d(0.f, 0.f);
     glVertex2f(-0.5f, -0.5f);
-    glTexCoord2d(0.5f, 0.5f);
+    glTexCoord2d(1.f, 0.f);
     glVertex2f(0.5f, -0.5f);
-    glTexCoord2d(-0.5f, 0.5f);
+    glTexCoord2d(1.f, 1.f);
     glVertex2f(0.5f, 0.5f);
-    glTexCoord2d(-0.5f, -0.5f);
+    glTexCoord2d(0.f, 1.f);
     glVertex2f(-0.5f, 0.5f);
-    glTexCoord2d(0.5f, -0.5f);
     glEnd();
+    glDisable(GL_TEXTURE_2D);
 
     glutSwapBuffers();
 }
@@ -57,18 +54,18 @@ static int init(int* argc, char** argv)
     glutCreateWindow("Hello, world!");
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-    glEnable(GL_TEXTURE_2D);
     glutDisplayFunc(&render);
     glutIdleFunc(&update);
 
     glewInit();
     if (!GLEW_VERSION_2_0)
     {
-        fprintf(stderr, "OpenGL 2.0 not available\n");
         return 0;
     }
 
-    return 0;
+    texture = loadTexture("ship.png", NULL, NULL);
+
+    return 1;
 }
 
 int main(int argc, char** argv)
