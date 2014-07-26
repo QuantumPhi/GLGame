@@ -10,7 +10,7 @@ public:
 
     bindTexture(GLuint texture)
     {
-
+        
     }
 protected:
     Vertex** vertices;
