@@ -12,6 +12,8 @@
 using namespace std;
 
 static GLuint texture;
+static int width;
+static int height;
 
 static void clear()
 {
@@ -32,13 +34,13 @@ static void render()
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
     glTexCoord2d(0.f, 0.f);
-    glVertex2f(-0.5f, -0.5f);
+    glVertex2f((float)width / height * -0.5f, -0.5f);
     glTexCoord2d(1.f, 0.f);
-    glVertex2f(0.5f, -0.5f);
+    glVertex2f((float)width / height * 0.5f, -0.5f);
     glTexCoord2d(1.f, 1.f);
-    glVertex2f(0.5f, 0.5f);
+    glVertex2f((float)width / height * 0.5f, 0.5f);
     glTexCoord2d(0.f, 1.f);
-    glVertex2f(-0.5f, 0.5f);
+    glVertex2f((float)width / height * -0.5f, 0.5f);
     glEnd();
     glDisable(GL_TEXTURE_2D);
 
@@ -63,7 +65,7 @@ static int init(int* argc, char** argv)
         return 0;
     }
 
-    texture = loadTexture("ship.png", NULL, NULL);
+    texture = loadTexture("ship.png", &width, &height);
 
     return 1;
 }
